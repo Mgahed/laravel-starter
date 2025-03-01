@@ -3,7 +3,11 @@
     <!--begin::Copyright-->
     <div class="text-dark order-2 order-md-1">
         <span class="text-muted fw-semibold me-1">{{\Carbon\Carbon::now('Y')}}&copy;</span>
-        <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
+		@php
+			$laravel = app();
+			$php = phpversion();
+		@endphp
+		<span class="fw-semibold"> <a href="https://laravel.com" target="_blank" class="text-primary fw-bolder">Laravel {{$laravel::VERSION}}</a> & <a href="https://www.php.net" target="_blank" class="text-primary fw-bolder">PHP {{$php}}</a></span>
     </div>
     <!--end::Copyright-->
     <!--begin::Menu-->
