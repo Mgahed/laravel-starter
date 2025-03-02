@@ -781,7 +781,7 @@
             <!--end::Menu separator-->
             <!--begin::Menu item-->
             <div class="menu-item px-5">
-                <a href="{{auth()->user()->email}}" class="menu-link px-5">
+                <a href="{{route('profile.edit')}}" class="menu-link px-5">
                     {{__('admin.Profile')}}
                 </a>
             </div>

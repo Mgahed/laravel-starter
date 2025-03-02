@@ -4,7 +4,8 @@
 	"keywords": [
 		"mgahed",
 		"mgahed.com",
-		"test-starter"
+		"laravel-starter",
+		"laravel"
 	],
 	"homepage": "https://github.com/mgahed/laravel-starter",
 	"license": "MIT",

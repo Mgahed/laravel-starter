@@ -33,7 +33,7 @@
             <!--end::Breadcrumb-->
             <!--begin::Title-->
             <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">
-                Dashboard
+                {{$pageTitle ?? ''}}
             </h1>
             <!--end::Title-->
         </div>
