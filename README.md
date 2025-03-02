@@ -1,5 +1,5 @@
 # Mgahed Laravel Starter
-![Packagist Version](https://img.shields.io/packagist/v/mgahed/laravel-starter)
+![Packagist Version](https://img.shields.io/packagist/v/mgahed/laravel-starter?style=flat&color=blue)
 
 The package `mgahed/laravel-starter` allows you to easily use starter templates for your Laravel projects.
 
