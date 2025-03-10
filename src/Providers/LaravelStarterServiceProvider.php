@@ -35,6 +35,15 @@ class LaravelStarterServiceProvider extends ServiceProvider
 				__DIR__ . '/../../resources/assets' => public_path('assets'),
 			], 'mgahed-laravel-starter-assets');
 
+			// Publishing the migration files.
+			$this->publishes([
+				__DIR__ . '/../../database/migrations' => database_path('migrations/mgahed-laravel-starter'),
+			], 'mgahed-laravel-starter-migrations');
+
+			// Publishing the seeders files.
+			$this->publishes([
+				__DIR__ . '/../../database/seeders' => database_path('seeders'),
+			], 'mgahed-laravel-starter-seeders');
 			// Publishing the translation files.
 			/*$this->publishes([
 				__DIR__.'/../../resources/lang' => resource_path('lang/vendor/mgahed-starter'),

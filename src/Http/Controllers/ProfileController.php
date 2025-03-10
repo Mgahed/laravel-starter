@@ -15,7 +15,7 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-	private string $pageTitle = 'admin.Profile information';
+	private string $pageTitle = 'starter.Profile information';
     public function edit(Request $request): View
     {
         return view('mgahed-laravel-starter::profile.edit', [

@@ -746,7 +746,7 @@
         <div class="cursor-pointer symbol symbol-30px symbol-lg-40px"
              data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
              data-kt-menu-placement="bottom-end">
-            <img src="{{asset('assets/media/avatars/300-2.jpg')}}" alt="user"/>
+            <img src="{{asset('assets/media/avatars/gaza.jpg')}}" alt="user"/>
         </div>
         <!--begin::User account menu-->
         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -756,7 +756,7 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{asset('assets/media/avatars/300-2.jpg')}}"/>
+                        <img alt="Logo" src="{{asset('assets/media/avatars/gaza.jpg')}}"/>
                     </div>
                     <!--end::Avatar-->
                     <!--begin::Username-->
@@ -782,7 +782,7 @@
             <!--begin::Menu item-->
             <div class="menu-item px-5">
                 <a href="{{route('profile.edit')}}" class="menu-link px-5">
-                    {{__('admin.Profile')}}
+                    {{__('starter.Profile')}}
                 </a>
             </div>
             <!--end::Menu item-->
@@ -793,7 +793,7 @@
             <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                  data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
                 <a href="#" class="menu-link px-5">
-											<span class="menu-title position-relative">{{__('admin.Mode')}}
+											<span class="menu-title position-relative">{{__('starter.Mode')}}
 											<span class="ms-5 position-absolute translate-middle-y top-50 end-0">
 												<i class="ki-duotone ki-night-day theme-light-show fs-2">
 													<span class="path1"></span>
@@ -876,7 +876,7 @@
             <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                  data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
                 <a href="#" class="menu-link px-5">
-											<span class="menu-title position-relative">{{__('admin.Language')}}
+											<span class="menu-title position-relative">{{__('starter.Language')}}
 											<span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
                                                 {{app()->getLocale() == 'en' ? 'English' : 'عربي'}}
 											<img class="w-15px h-15px rounded-1 ms-2"
@@ -889,9 +889,9 @@
                         <a href="#" class="menu-link d-flex px-5 active">
                             <span class="symbol symbol-20px me-4">
                                 <img class="rounded-1" src="{{asset('assets/media/flags/united-states.svg')}}"
-                                     alt="{{__('admin.English')}}"/>
+                                     alt="{{__('starter.English')}}"/>
                             </span>
-                            {{__('admin.English')}}
+                            {{__('starter.English')}}
                         </a>
                     </div>
                     <!--end::Menu item-->
@@ -899,9 +899,9 @@
                     <div class="menu-item px-3">
                         <a href="#" class="menu-link d-flex px-5">
                             <span class="symbol symbol-20px me-4">
-                                <img class="rounded-1" src="{{asset('assets/media/flags/egypt.svg')}}" alt="{{__('admin.Arabic')}}"/>
+                                <img class="rounded-1" src="{{asset('assets/media/flags/egypt.svg')}}" alt="{{__('starter.Arabic')}}"/>
                             </span>
-                            {{__('admin.Arabic')}}
+                            {{__('starter.Arabic')}}
                         </a>
                     </div>
                     <!--end::Menu item-->
@@ -912,7 +912,7 @@
             <!--begin::Menu item-->
             <div class="menu-item px-5">
                 <a href="#" type="button" id="logout_sweetalert" class="menu-link px-5">
-                    {{__('admin.Logout')}}
+                    {{__('starter.Logout')}}
                 </a>
                 <form action="{{route('logout')}}" method="get" id="logout_form"></form>
             </div>

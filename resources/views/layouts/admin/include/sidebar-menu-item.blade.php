@@ -1,5 +1,8 @@
 <!--begin:Menu item-->
-<div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+<div data-kt-menu-trigger="click" class="menu-item here {{in_array(
+	route(request()->route()->getName()),
+	array_column($menuItem['items'], 'route')
+	) ? 'show' : ''}} menu-accordion">
     <!--begin:Menu link-->
     <span class="menu-link">
         <span class="menu-icon">

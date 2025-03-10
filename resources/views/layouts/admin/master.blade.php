@@ -73,6 +73,7 @@
                     <!--end::Toolbar-->
                     <!--begin::Content-->
                     <div id="kt_app_content" class="app-content flex-column-fluid">
+						@include('mgahed-laravel-starter::layouts.admin.include.alerts')
                         <!--begin::Content container-->
                         @yield("pageContent")
                         <!--end::Content container-->
@@ -124,6 +125,52 @@
 <!--end::Custom Javascript-->
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
+
+<script>
+	function ajaxSubmit($url,$div,$type="POST",$V=null) {
+
+		document.getElementById($div).innerHTML='<div class="d-flex justify-content-center"><div class="spinner-border"><span class="sr-only">Loading...</span></div></div>';
+
+		$.ajax({
+			type: $type,
+			url: $url,
+			success: function(data) {
+				document.getElementById($div).style.display = "block";
+
+				if($V==1) {
+					document.getElementById($div).value= data;
+				} else {
+					document.getElementById($div).innerHTML= data;
+				}
+			},
+			error: function (data, textStatus, errorThrown) {
+				console.log(data);
+			},
+			complete: function (data) {
+				// console.log(data);
+			}
+		});
+	}
+
+	function ajaxFormSubmit($url,$type="POST",$formData=null) {
+
+		$.ajax({
+			url: $url,
+			type: $type,
+			dataType: "JSON",
+			headers: {"X-CSRF-TOKEN": "{{csrf_token()}}"},
+			data: $formData,
+			contentType: false,
+			processData: false,
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (data, textStatus, errorThrown) {
+				console.log(data);
+			}
+		});
+	}
+</script>
 @include("mgahed-laravel-starter::layouts.admin.include.sweetalert")
 @yield("pageJsCode")
 </body>

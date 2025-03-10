@@ -22,10 +22,32 @@ composer require mgahed/laravel-starter
 Ensure that your database is configured to use PostgreSQL with the vector extension. The package will enable the extension
 via a migration if it is not already enabled.
 
-You can publish the assets:
+## Publishing
+
+#### assets
+```bash
+php artisan vendor:publish --tag="mgahed-laravel-starter-assets"
+```
+#### migrations
+```bash
+php artisan vendor:publish --tag="mgahed-laravel-starter-migrations"
+```
+
+#### seeders
+```bash
+php artisan vendor:publish --tag="mgahed-laravel-starter-seeders"
+```
+
+## Running Migrations
 
 ```bash
-php artisan vendor:publish --tag="mgahed-laravel-starter-assets
+php artisan migrate --path=database/migrations/mgahed-laravel-starter
+```
+
+## Running Seeders
+
+```bash
+php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarterSitesSeeder
 ```
 
 This will add folder assets to the `public` path in your laravel project.
