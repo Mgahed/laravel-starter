@@ -28,6 +28,10 @@ via a migration if it is not already enabled.
 ```bash
 php artisan vendor:publish --tag="mgahed-laravel-starter-assets"
 ```
+
+This will add folder assets to the `public` path in your Laravel project.
+
+
 #### migrations
 ```bash
 php artisan vendor:publish --tag="mgahed-laravel-starter-migrations"
@@ -49,8 +53,6 @@ php artisan migrate --path=database/migrations/mgahed-laravel-starter
 ```bash
 php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarterSitesSeeder
 ```
-
-This will add folder assets to the `public` path in your laravel project.
 
 
 ## Supported Links
