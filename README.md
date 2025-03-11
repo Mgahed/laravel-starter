@@ -54,6 +54,16 @@ php artisan migrate --path=database/migrations/mgahed-laravel-starter
 php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarterSitesSeeder
 ```
 
+## Features supported
+* Authentication
+* Profile (view, edit, delete)
+* Easy translation system
+* Saul Theme supported
+* Easy to customize
+* Supports `mcamara/laravel-localization` package
+  * Run `composer require mcamara/laravel-localization` 
+  * publish the config file `php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"`
+  * See docs [here](https://github.com/mcamara/laravel-localization)
 
 ## Supported Links
 
