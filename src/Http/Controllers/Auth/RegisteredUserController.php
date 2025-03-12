@@ -2,7 +2,6 @@
 
 namespace Mgahed\LaravelStarter\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -11,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Mgahed\LaravelStarter\Models\User;
 
 class RegisteredUserController extends Controller
 {

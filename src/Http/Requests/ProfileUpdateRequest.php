@@ -2,9 +2,9 @@
 
 namespace Mgahed\LaravelStarter\Http\Requests;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Mgahed\LaravelStarter\Models\User;
 
 class ProfileUpdateRequest extends FormRequest
 {
