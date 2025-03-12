@@ -21,8 +21,8 @@
 		"spatie/laravel-package-tools": "^1.14.0"
 	},
 	"require-dev": {
+		"larastan/larastan": "^3.1",
 		"laravel/pint": "^1.17",
-		"nunomaduro/larastan": "^2.0.1",
 		"orchestra/testbench": "^v9.0.0"
 	},
 	"autoload": {
