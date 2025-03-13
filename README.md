@@ -19,9 +19,6 @@ package add authentication and (view, edit, delete) profile using Saul theme. An
 composer require mgahed/laravel-starter
 ```
 
-Ensure that your database is configured to use PostgreSQL with the vector extension. The package will enable the extension
-via a migration if it is not already enabled.
-
 ## Publishing
 
 #### assets
