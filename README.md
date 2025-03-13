@@ -54,6 +54,10 @@ php artisan migrate --path=database/migrations/mgahed-laravel-starter
 php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarterSitesSeeder
 ```
 
+```bash
+php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarterMenusSeeder
+```
+
 ## Features supported
 * Authentication
 * Profile (view, edit, delete)

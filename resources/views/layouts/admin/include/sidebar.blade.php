@@ -1,37 +1,8 @@
 @php
-	$dashboardItems = $menuItems = [
-		[
-		'title' => __('starter.Dashboard'),
-		'items' => [
-			[
-				'title' => __('starter.Dashboard'),
-				'icon' => 'fas fa-tachometer-alt',
-				'route' => route('dashboard'),
-			],
-		],
-		],
-	];
-	$settingsItems = [
-					'title' => __('starter.Settings'),
-					'items' => [
-						[
-							'title' => __('starter.Translations'),
-							'icon' => 'fas fa-tachometer-alt',
-							'route' => route('translations.index'),
-						],
-					],
-				];
-	if(!isset($menuItems)){
-		$menuItems = [
-				$dashboardItems,
-				$settingsItems
-			];
-	} else {
-		// array merge
-		$menuItems = array_merge($menuItems, [
-			$settingsItems
-		]);
-	}
+	$menuItems = \Mgahed\LaravelStarter\Models\Admin\Menu::query()
+	->with('children')
+	->parentsOnly()
+	->get();
 @endphp
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true"
 	 data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}"

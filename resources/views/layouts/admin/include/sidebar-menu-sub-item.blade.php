@@ -1,7 +1,7 @@
 <!--begin:Menu item-->
 <div class="menu-item">
     <!--begin:Menu link-->
-    <a class="menu-link {{route(request()->route()->getName()) == $menuSubItem['route'] ? 'active' : ''}}" href="{{$menuSubItem['route']}}">
+    <a class="menu-link {{request()->route()->getName() == $menuSubItem['route'] ? 'active' : ''}}" href="{{route($menuSubItem['route'])}}">
         <span class="menu-bullet">
             <span class="bullet bullet-dot"></span>
         </span>
