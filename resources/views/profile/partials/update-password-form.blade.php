@@ -1,11 +1,11 @@
 <section class="mt-20">
 	<header>
 		<h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-			{{ __('Update Password') }}
+			{{ __('starter.Update Password') }}
 		</h2>
 
 		<p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-			{{ __('Ensure your account is using a long, random password to stay secure.') }}
+			{{ __('starter.Ensure your account is using a long, random password to stay secure.') }}
 		</p>
 	</header>
 
@@ -14,7 +14,7 @@
 		@method('put')
 
 		<div class="mt-6">
-			<label for="update_password_current_password">{{ __('Current Password') }}</label>
+			<label for="update_password_current_password">{{ __('starter.Current Password') }}</label>
 			<input id="update_password_current_password" name="current_password" type="password"
 				   class="mt-1 form-control w-full @error('current_password') is-invalid @enderror"
 				   autocomplete="current-password"/>
@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="mt-6">
-			<label for="update_password_password">{{ __('New Password') }}</label>
+			<label for="update_password_password">{{ __('starter.New Password') }}</label>
 			<input id="update_password_password" name="password" type="password" class="mt-1 form-control w-full @error('password') is-invalid @enderror"
 				   autocomplete="new-password"/>
 			@error('password')
@@ -33,7 +33,7 @@
 		</div>
 
 		<div class="mt-6">
-			<label for="update_password_password_confirmation">{{ __('Confirm Password') }}</label>
+			<label for="update_password_password_confirmation">{{ __('starter.Confirm Password') }}</label>
 			<input id="update_password_password_confirmation" name="password_confirmation" type="password"
 				   class="mt-1 form-control w-full @error('password_confirmation') is-invalid @enderror"
 				   autocomplete="new-password"/>
@@ -43,11 +43,11 @@
 		</div>
 
 		<div class="flex items-center gap-4 mt-6">
-			<button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+			<button type="submit" class="btn btn-primary">{{ __('starter.Save') }}</button>
 
 			@if (session('status') === 'password-updated')
 				<p class="text-sm text-gray-600 dark:text-gray-400">
-					{{ __('Saved.') }}
+					{{ __('starter.Saved') }}
 				</p>
 			@endif
 		</div>

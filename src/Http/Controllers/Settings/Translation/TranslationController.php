@@ -422,7 +422,7 @@ class TranslationController extends Controller
 //		$this->publishTranslation();
     }
 
-    public function translateAll($langCode = 'ar')
+    public function translateAll($langCode = 'en')
     {
         dispatch(new TranslateJob($langCode))->delay(now()->addSeconds(5));
         return redirect()->route('translations.index')->with('success', __('admin.settings.translations.Translated'));

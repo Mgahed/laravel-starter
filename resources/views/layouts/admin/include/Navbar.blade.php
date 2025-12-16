@@ -180,9 +180,9 @@
                 <a href="#" class="menu-link px-5">
 											<span class="menu-title position-relative">{{__('starter.Language')}}
 											<span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
-                                                {{app()->getLocale() == 'en' ? 'English' : 'عربي'}}
+                                                {{LaravelLocalization::getCurrentLocaleNative()}}
 											<img class="w-15px h-15px rounded-1 ms-2"
-                                                 src="{{app()->getLocale() == 'en' ? asset('assets/media/flags/united-states.svg') : asset('assets/media/flags/egypt.svg')}}" alt=""/></span></span>
+                                                 src="{{asset('assets/media/flags/' . (LaravelLocalization::getSupportedLocales()[app()->getLocale()]['flag'] ?? 'united-states') . '.svg')}}" alt=""/></span></span>
                 </a>
                 <!--begin::Menu sub-->
                 <div class="menu-sub menu-sub-dropdown w-175px py-4">

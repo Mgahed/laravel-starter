@@ -58,13 +58,32 @@ php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarter
 ## Features supported
 * Authentication
 * Profile (view, edit, delete)
-* Easy translation system
+* Easy translation system with multi-language support
+* Automated translation job (see [Translation Job Guide](TRANSLATION_JOB_GUIDE.md))
 * Saul Theme supported
 * Easy to customize
 * Supports `mcamara/laravel-localization` package
   * Run `composer require mcamara/laravel-localization` 
   * publish the config file `php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"`
   * See docs [here](https://github.com/mcamara/laravel-localization)
+
+## Translation System
+
+The package includes a powerful translation job that can automatically translate your content to multiple languages using Google Translate API. The job integrates seamlessly with `mcamara/laravel-localization` to support all configured locales.
+
+### Quick Start
+
+```php
+use Mgahed\LaravelStarter\Jobs\TranslateJob;
+
+// Translate from English to all supported languages
+TranslateJob::dispatch('en');
+
+// Translate from English to specific languages
+TranslateJob::dispatch('en', ['ar', 'fr', 'es']);
+```
+
+For detailed usage instructions, see the [Translation Job Guide](TRANSLATION_JOB_GUIDE.md).
 
 ## Supported Links
 
