@@ -71,6 +71,50 @@ php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarter
 
 The package includes a powerful translation job that can automatically translate your content to multiple languages using Google Translate API. The job integrates seamlessly with `mcamara/laravel-localization` to support all configured locales.
 
+### Translation Scanning
+
+The translation scanner automatically discovers translation keys from your code and vendor packages.
+for example if you have alot of packages under `mgahed` By default, it scans:
+- Application views and controllers
+- All vendor packages under the `mgahed` namespace (configurable)
+
+#### Scanning Multiple Vendor Packages
+
+You can configure the package prefix to scan all packages under a specific vendor namespace. This is useful when you have multiple packages like `mgahed/ai`, `mgahed/core`, `mgahed/one`, etc.
+
+**Configuration:**
+
+Add to your `.env` file:
+```env
+PACKAGES_PREFIX=mgahed
+```
+
+**How it works:**
+
+The scanner will automatically discover and scan all packages under `vendor/{PACKAGES_PREFIX}/`:
+- Scans `resources/views` directory in each package
+- Scans `src` directory in each package
+- No need to manually configure each package
+
+**Example:**
+
+If you have the following packages:
+- `vendor/mgahed/ai`
+- `vendor/mgahed/core`
+- `vendor/mgahed/one`
+- `vendor/mgahed/laravel-starter`
+
+All of them will be automatically scanned for translation keys without additional configuration.
+
+**Running the Scan:**
+
+```php
+use Mgahed\LaravelStarter\Jobs\ScanTranslationJob;
+
+// Dispatch the job to scan for translation keys
+ScanTranslationJob::dispatch();
+```
+
 ### Quick Start
 
 ```php

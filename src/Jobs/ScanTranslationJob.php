@@ -51,6 +51,24 @@ class ScanTranslationJob implements ShouldQueue
 			$this->findTranslation(base_path('vendor/mgahed/laravel-starter/src'));
 		}
 
+		//vendor - scan all prefixed packages
+		$prefixedPackages = env('PACKAGES_PREFIX', 'mgahed');
+		if (File::exists(base_path("vendor/$prefixedPackages"))) {
+			$mgahedPackages = File::directories(base_path("vendor/$prefixedPackages"));
+
+			foreach ($mgahedPackages as $packagePath) {
+				// Scan resources/views if exists
+				if (File::exists($packagePath . '/resources/views')) {
+					$this->findTranslation($packagePath . '/resources/views');
+				}
+
+				// Scan src if exists
+				if (File::exists($packagePath . '/src')) {
+					$this->findTranslation($packagePath . '/src');
+				}
+			}
+		}
+
 		// check if path exist
 		if (File::exists(base_path('app/Mail'))) {
 			$this->findTranslation(base_path('app/Mail'));
