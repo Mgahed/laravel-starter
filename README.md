@@ -60,12 +60,83 @@ php artisan db:seed --class=Mgahed\LaravelStarter\Database\Seeders\MgahedStarter
 * Profile (view, edit, delete)
 * Easy translation system with multi-language support
 * Automated translation job (see [Translation Job Guide](TRANSLATION_JOB_GUIDE.md))
+* Menu management system with multi-language support
 * Saul Theme supported
 * Easy to customize
 * Supports `mcamara/laravel-localization` package
   * Run `composer require mcamara/laravel-localization` 
   * publish the config file `php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"`
   * See docs [here](https://github.com/mcamara/laravel-localization)
+
+## Menu Management System
+
+The package includes a powerful menu management system that supports multi-language menu titles. Menu titles are stored as JSON in the database and automatically integrate with `mcamara/laravel-localization` package.
+
+### Creating a New Menu Item
+
+Use the `mgahed:menu` command to create menu items with multi-language support:
+
+```bash
+php artisan mgahed:menu {slug} {route?} {parent?}
+```
+
+**Parameters:**
+- `slug` (required): The unique slug for the menu item
+- `route` (optional): The route name or URL (defaults to "#")
+- `parent` (optional): The parent menu slug (for creating sub-menus)
+
+**Interactive Multi-Language Input:**
+
+The command automatically detects available languages from your `mcamara/laravel-localization` configuration and prompts you to enter the menu title for each language:
+
+```bash
+# Create a simple menu item
+php artisan mgahed:menu products products.index
+
+# Create a parent menu
+php artisan mgahed:menu settings-parent
+
+# Create a child menu with parent
+php artisan mgahed:menu site-settings settings.index settings-parent
+```
+
+**Example Output:**
+
+```
+Please enter the menu title for each language:
+Title for English (en): Products
+Title for Arabic (ar): المنتجات
+Title for German (de): Produkte
+
+Successfully created menu with id: 5
++----------+------------+
+| Language | Title      |
++----------+------------+
+| en       | Products   |
+| ar       | المنتجات  |
+| de       | Produkte   |
++----------+------------+
+```
+
+**How it works:**
+
+1. The command reads available languages from `config/laravellocalization.php`
+2. Prompts you to enter a title for each configured language
+3. Stores the titles as JSON in the database using `spatie/laravel-translatable`
+4. If no localization config is found, defaults to English and Arabic
+
+**Database Structure:**
+
+Menu titles are stored as JSON in the `title` column:
+```json
+{
+  "en": "Dashboard",
+  "ar": "لوحة التحكم",
+  "de": "Armaturenbrett"
+}
+```
+
+This allows seamless integration with all Mgahed packages that support multi-language features like `mgahed/ai`, `mgahed/core`, `mgahed/one`, etc.
 
 ## Translation System
 

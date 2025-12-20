@@ -4,6 +4,7 @@ namespace Mgahed\LaravelStarter\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Mgahed\LaravelStarter\Commands\LaravelStarterCommand;
+use Mgahed\LaravelStarter\Commands\NewMenuItem;
 
 class LaravelStarterServiceProvider extends ServiceProvider
 {
@@ -53,6 +54,7 @@ class LaravelStarterServiceProvider extends ServiceProvider
 			// Registering package commands.
 			$this->commands([
 				LaravelStarterCommand::class,
+				NewMenuItem::class,
 			]);
 		}
 	}
