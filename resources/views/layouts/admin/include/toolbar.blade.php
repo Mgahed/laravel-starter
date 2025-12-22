@@ -40,11 +40,17 @@
         <!--end::Page title-->
         <!--begin::Actions-->
         @if(isset($create) || isset($edit))
-            <a href="#" class="btn btn-sm btn-success ms-3 px-4 py-3" data-bs-toggle="modal"
+            <a href="{{$createOrEditLink}}" class="btn btn-sm btn-success ms-3 px-4 py-3" data-bs-toggle="modal"
                data-bs-target="#kt_modal_create_app">
-                {{$createOrEditButton}}
+                {{$createOrEditTitle}}
             </a>
         @endif
+		@if(isset($export))
+			<a href="{{$exportLink}}" class="btn btn-sm btn-success ms-3 px-4 py-3" data-bs-toggle="modal"
+			   data-bs-target="#kt_modal_create_app">
+				{{ __('common.common.Export')  }}
+			</a>
+		@endif
         <!--end::Actions-->
     </div>
     <!--end::Toolbar wrapper-->
