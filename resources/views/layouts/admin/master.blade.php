@@ -173,6 +173,7 @@
 </script>
 @include("mgahed-laravel-starter::layouts.admin.include.sweetalert")
 @yield("pageJsCode")
+@stack('scripts')
 </body>
 <!--end::Body-->
 </html>
