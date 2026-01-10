@@ -41,14 +41,12 @@
         <!--begin::Actions-->
 		<span>
 			@if(isset($create) || isset($edit))
-				<a href="{{$createOrEditLink}}" class="btn btn-sm btn-success ms-3 px-4 py-3" data-bs-toggle="modal"
-				   data-bs-target="#kt_modal_create_app">
+				<a href="{{$createOrEditLink}}" class="btn btn-sm btn-success ms-3 px-4 py-3">
 					{{$createOrEditTitle}}
 				</a>
 			@endif
 			@if(isset($export))
-				<a href="{{$exportLink}}" class="btn btn-sm btn-secondary ms-3 px-4 py-3" data-bs-toggle="modal"
-				   data-bs-target="#kt_modal_create_app">
+				<a href="{{$exportLink}}" class="btn btn-sm btn-secondary ms-3 px-4 py-3">
 				   <i class="fa-solid fa-file-csv"></i>
 					{{ __('common.common.Export')  }}
 				</a>
