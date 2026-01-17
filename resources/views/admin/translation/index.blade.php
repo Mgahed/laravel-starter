@@ -30,6 +30,9 @@
                         <a href="{{route('translations.scan')}}" class="btn btn-label-brand btn-bold">
                             <em class="fas fa-search"></em> {{__("admin.settings.translations.Scan translations")}}
                         </a>
+						<a href="{{route('translate-all', [], false)}}" class="btn btn-info btn-bold">
+							<em class="fas fa-language"></em> {{__("admin.settings.translations.Translate all")}}
+						</a>
                         <a href="{{route('translations.publish')}}" class="btn btn-default btn-bold">
                             <em class="fas fa-upload"></em> {{__("admin.settings.translations.Publish translations")}}
                         </a>
@@ -47,7 +50,7 @@
         </div>
 
         <div class="row app-container container-fluid">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <div class="card shadow-sm app-content d-flex h-100 flex-column">
                     <div class="card-body">
                         <div class="kt-portlet__body">
@@ -66,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 @include('mgahed-laravel-starter::admin.translation.filter')
                 <br>
                 @include('mgahed-laravel-starter::admin.translation.form')
@@ -124,17 +127,18 @@
             ajaxFormSubmit('{{route('translations.update')}}','POST',formData)
         }
 
-        function postForm() {
-            form = document.getElementById("SearchForm");
+		function postForm() {
+			const form = document.getElementById("SearchForm");
 
-            $url = '{{route('translations.search')}}/?site_id=' + form.site_id.value
-                + '&translation_published=' + form.translation_published.value
-                + '&find_in_value=' + form.find_in_value.value
-                + '&find_in_field=' + form.find_in_field.value
-                + '&find_in_operator=' + form.find_in_operator.value;
+			const url = '{{ url()->route('translations.search', [], false) }}'
+				+ '?site_id=' + encodeURIComponent(form.site_id.value)
+				+ '&translation_published=' + encodeURIComponent(form.translation_published.value)
+				+ '&find_in_value=' + encodeURIComponent(form.find_in_value.value)
+				+ '&find_in_field=' + encodeURIComponent(form.find_in_field.value)
+				+ '&find_in_operator=' + encodeURIComponent(form.find_in_operator.value);
 
-            ajaxSubmit($url,'formData','GET')
-        }
+			ajaxSubmit(url, 'formData', 'GET');
+		}
 
         function googleTranslation($div,$id,$lang,$str,defaultLang = false) {
             var obj=document.getElementById($div);

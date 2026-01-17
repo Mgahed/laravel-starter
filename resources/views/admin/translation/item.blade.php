@@ -21,9 +21,9 @@
                 @foreach($data as $item)
                     @if($item->full_path != null)
                         <tr>
-                            <td class="text-truncate px-2 border">
-                                {{\Illuminate\Support\Str::limit($item->translation_key, 50)}}
-                                <br/><small>{{\Illuminate\Support\Str::limit($item->full_path, 60)}}</small>
+                            <td class="px-2 border" style="width: 200px; max-width: 200px; word-wrap: break-word; white-space: normal; font-size: 0.875rem;">
+                                <div style="word-break: break-word;">{{$item->translation_key}}</div>
+                                <small class="text-muted" style="word-break: break-word;">{{$item->full_path}}</small>
                             </td>
                             @foreach(@$Sites as $site)
                                 @if($site->lang <> 'en' && @json_decode(@$item->translations,true)[$site->lang] == @json_decode(@$item->translations,true)['en'])
@@ -36,21 +36,21 @@
                                     @endphp
                                 @endif
                                 <td class="text-center px-2 border {{@$redFlag}}">
-                                    <div class="input-group">
+                                    <div class="input-group input-group-sm">
                                         <button type="button"
                                                 onclick="globalTranslation('{{$site->lang}}_{{$item->id}}','{{$item->translation_key}}','{{$site->lang}}')"
-                                                class="btn btn-primary btn-bold">
+                                                class="btn btn-primary btn-sm">
                                             <em class="fas fa-globe"></em>
                                         </button>
                                         <input dir="{{$site->site_direction}}" id="{{$site->lang}}_{{$item->id}}"
                                                name="{{$site->lang}}_{{$item->id}}"
                                                onfocusout="updateTranslation(this,'{{$item->id}}','{{$site->lang}}')"
                                                value="{{@json_decode(@$item->translations,true)[$site->lang]}}" type="text"
-                                               class="form-control">
+                                               class="form-control form-control-sm">
                                         @if($site->id <> 1)
                                             <button type="button"
                                                     onclick="googleTranslation('{{$site->lang}}_{{$item->id}}','{{$item->id}}','{{$site->lang}}','{{$item->translation_key}}')"
-                                                    class="btn btn-primary btn-bold">
+                                                    class="btn btn-primary btn-sm">
                                                 <em class="fas fa-language"></em>
                                             </button>
                                         @endif

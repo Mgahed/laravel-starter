@@ -17,12 +17,14 @@
                         <!--begin::Title-->
                         <h1 class="text-dark mb-3">{{__('auth.Sign in to')}}</h1>
                         <!--end::Title-->
+						@if (env('REGISTRATION_ENABLED', true))
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-semibold fs-4">{{__('auth.New here')}}
                             <a href="{{route('register')}}" class="link-primary fw-bold">
                                 {{__('auth.Create an account')}}
                             </a></div>
                         <!--end::Link-->
+						@endif
                     </div>
                     <!--begin::Heading-->
                     <!--begin::Input group-->
@@ -77,8 +79,10 @@
                             <span class="indicator-progress">{{__('auth.Please wait')}}
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
+						@if (env('SOCIAL_AUTH_ENABLED', true))
                         <!--end::Submit button-->
                         @include('mgahed-laravel-starter::layouts.auth.include.social-auth')
+						@endif
                     </div>
                     <!--end::Actions-->
                 </form>

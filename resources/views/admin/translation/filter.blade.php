@@ -32,6 +32,7 @@
                                     {{__('admin.settings.translations.Contain')}}
                                 </option>
                                 <option value="equal_to" {{@$filter->find_in_operator=="equal_to" ? "selected" : ""}}>
+                                <option value="equal_to" {{@$filter->find_in_operator=="equal_to" ? "selected" : ""}}>
                                     {{__('admin.settings.translations.Equal to')}}
                                 </option>
                                 <option value="start_with" {{@$filter->find_in_operator=="start_with" ? "selected" : ""}}>

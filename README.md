@@ -13,6 +13,13 @@ package add authentication and (view, edit, delete) profile using Saul theme. An
 > [!WARNING]
 > Please note that this package is still in development.
 
+## Configuration
+
+You can customize the behavior of the authentication views by adding the following variables to your `.env` file:
+
+- `REGISTRATION_ENABLED`: Set to `false` to disable the "Create an account" link on the login page. Defaults to `true`.
+- `SOCIAL_AUTH_ENABLED`: Set to `false` to disable the social authentication buttons (e.g., Google, Facebook) on the login page. Defaults to `true`.
+
 ## Installation
 
 ```bash
@@ -141,6 +148,18 @@ This allows seamless integration with all Mgahed packages that support multi-lan
 ## Translation System
 
 The package includes a powerful translation job that can automatically translate your content to multiple languages using Google Translate API. The job integrates seamlessly with `mcamara/laravel-localization` to support all configured locales.
+
+### Translation Management UI
+
+The package now includes a user-friendly interface for managing translations within the admin panel. This UI provides the following features:
+
+- **Scan Translations:** Discover new translation keys from your application and vendor packages.
+- **Translate All:** Automatically translate all unpublished translations at once.
+- **Publish Translations:** Publish all translations to the language files.
+- **Unpublished Items:** View a list of translations that have not yet been published.
+- **Translation Editor:** Edit translations for different languages in a user-friendly table.
+- **Google Translate Integration:** Automatically translate individual keys using Google Translate.
+- **Global Translation:** Apply a translation to all occurrences of a key across the system.
 
 ### Translation Scanning
 
