@@ -10,6 +10,6 @@ class SystemSettingsTest extends TestCase
 
         $this->get(route('system-settings.cover'))
             ->assertStatus(200)
-            ->assertSee('HACCP Cover');
+            ->assertSee('Cover');
     }
 }

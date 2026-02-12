@@ -80,6 +80,7 @@ class SystemSettingsController extends Controller
             $dompdf = new \Dompdf\Dompdf();
             $dompdf->loadHtml($view->render());
             $dompdf->setPaper('A4', 'portrait');
+			$dompdf->setBaseHost($settings->website);
             $dompdf->render();
 
             return response($dompdf->output(), 200, [

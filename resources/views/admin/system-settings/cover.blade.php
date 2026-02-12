@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{app()->getLocale()}}">
 <head>
     <meta charset="utf-8">
-    <title>HACCP Cover</title>
+    <title>{{__('admin.settings.system-settings.Cover')}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,6 +31,11 @@
             font-size: 18px;
             letter-spacing: 1px;
         }
+
+		.tax-id, .vat-no {
+			font-size: 16px;
+			color: #555;
+		}
     </style>
 </head>
 <body>
@@ -41,7 +46,17 @@
         @endif
         <div class="company-name">{{ $settings->company_name }}</div>
         <div class="approval-number">{{ $settings->health_approval_number }}</div>
+        <div class="tax-id">{{ $settings->tax_id }}</div>
+        <div class="vat-no">{{ $settings->vat_no }}</div>
     </div>
+	<div style="position: absolute; bottom: 20px; width: 100%; font-size: 12px; color: #888;">
+{{--		{{__('admin.settings.system-settings.Generated on')}} {{ now()->format('Y-m-d H:i') }}--}}
+		<footer style="margin-top: 4px; font-size: 10px; color: #aaa;">
+			<div>{{$settings->website}}</div>
+			<div>{{ $settings->mobile }}</div>
+			<div>{{ $settings->full_address }}</div>
+		</footer>
+	</div>
 </div>
 </body>
 </html>
