@@ -219,6 +219,18 @@ TranslateJob::dispatch('en', ['ar', 'fr', 'es']);
 
 For detailed usage instructions, see the [Translation Job Guide](TRANSLATION_JOB_GUIDE.md).
 
+## System Settings
+
+A new System Settings page lets you manage the company data used in document headers, footers, and the HACCP cover.
+
+- Route: `system-settings.index`
+- Cover preview: `system-settings.cover`
+- Cover PDF: `system-settings.cover?format=pdf` (requires `dompdf/dompdf`)
+
+Seeders:
+- `SystemSettingsMenuSeeder` adds the menu item under `settings-parent`.
+- `SystemSettingsSeeder` inserts the default company settings.
+
 ## Supported Links
 
 - [Saul Theme](https://keenthemes.com/products/saul-html-free)

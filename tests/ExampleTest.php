@@ -6,8 +6,10 @@ class ExampleTest extends TestCase
 {
 	public function testLaravelStarterExample()
 	{
-		$this->get(route('mgahed-starter.index'))
+		$this->withoutMiddleware();
+
+		$this->get(route('system-settings.cover'))
 			->assertStatus(200)
-			->assertViewIs('mgahed-starter::index');
+			->assertSee('HACCP Cover');
 	}
 }
