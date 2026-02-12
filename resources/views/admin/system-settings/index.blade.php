@@ -14,7 +14,7 @@
                         {{__('admin.settings.system-settings.Cover preview')}}
                     </a>
                     <a href="{{ route('system-settings.cover', ['format' => 'pdf']) }}" class="btn btn-primary btn-sm" target="_blank">
-                        {{__('admin.settings.system-settings.Download cover (PDF)')}}
+                        {{__('admin.settings.system-settings.Download cover')}}
                     </a>
                 </div>
             </div>

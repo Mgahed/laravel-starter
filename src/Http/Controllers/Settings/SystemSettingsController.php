@@ -71,16 +71,25 @@ class SystemSettingsController extends Controller
             $settings = SystemSetting::create($this->defaultSettings());
         }
 
+        $isPdf = $request->query('format') === 'pdf';
+        $logoUrl = $this->logoUrl($settings->logo_path);
+        $logoFilePath = $this->logoFilePath($settings->logo_path);
+
         $view = view('mgahed-laravel-starter::admin.system-settings.cover', [
             'settings' => $settings,
-            'logoUrl' => $this->logoUrl($settings->logo_path),
+            'logoUrl' => $logoUrl,
+            'logoFilePath' => $logoFilePath,
+            'isPdf' => $isPdf,
         ]);
 
-        if ($request->query('format') === 'pdf' && class_exists('Dompdf\\Dompdf')) {
-            $dompdf = new \Dompdf\Dompdf();
+        if ($isPdf && class_exists('Dompdf\\Dompdf')) {
+            $options = new \Dompdf\Options();
+            $options->set('isRemoteEnabled', true);
+            $options->set('chroot', [public_path(), storage_path('app/public')]);
+
+            $dompdf = new \Dompdf\Dompdf($options);
             $dompdf->loadHtml($view->render());
             $dompdf->setPaper('A4', 'portrait');
-			$dompdf->setBaseHost($settings->website);
             $dompdf->render();
 
             return response($dompdf->output(), 200, [
@@ -99,6 +108,15 @@ class SystemSettingsController extends Controller
         }
 
         return Storage::disk('public')->url($path);
+    }
+
+    private function logoFilePath(?string $path): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+
+        return public_path('storage/' . $path);
     }
 
     private function defaultSettings(): array
