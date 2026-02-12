@@ -41,8 +41,10 @@
 <body>
 <div class="page">
     <div>
-        @if($logoUrl)
-            <img class="logo" src="{{ $logoUrl }}" alt="Company Logo">
+        @if($isPdf && $logoFilePath)
+            <img class="logo" src="file://{{ $logoFilePath }}" alt="{{__('admin.settings.system-settings.Company Logo')}}">
+        @elseif($logoUrl)
+            <img class="logo" src="{{ $logoUrl }}" alt="{{__('admin.settings.system-settings.Company Logo')}}">
         @endif
         <div class="company-name">{{ $settings->company_name }}</div>
         <div class="approval-number">{{ $settings->health_approval_number }}</div>
