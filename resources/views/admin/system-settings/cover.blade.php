@@ -48,8 +48,6 @@
         @endif
         <div class="company-name">{{ $settings->company_name }}</div>
         <div class="approval-number">{{ $settings->health_approval_number }}</div>
-        <div class="tax-id">{{ $settings->tax_id }}</div>
-        <div class="vat-no">{{ $settings->vat_no }}</div>
     </div>
 	<div style="position: absolute; bottom: 20px; width: 100%; font-size: 12px; color: #888;">
 {{--		{{__('admin.settings.system-settings.Generated on')}} {{ now()->format('Y-m-d H:i') }}--}}
@@ -57,6 +55,8 @@
 			<div>{{$settings->website}}</div>
 			<div>{{ $settings->mobile }}</div>
 			<div>{{ $settings->full_address }}</div>
+			<div>{{ $settings->tax_id }}</div>
+			<div>{{ $settings->vat_no }}</div>
 		</footer>
 	</div>
 </div>

@@ -75,11 +75,11 @@
                                     <input type="text" name="tax_id" class="form-control" value="{{ old('tax_id', $settings->tax_id) }}">
                                 </div>
                                 <div class="col-md-4 mb-5">
-                                    <label class="form-label">{{__('admin.settings.system-settings.VAT No.')}}</label>
+                                    <label class="form-label">{{__('admin.settings.system-settings.VAT No')}}</label>
                                     <input type="text" name="vat_no" class="form-control" value="{{ old('vat_no', $settings->vat_no) }}">
                                 </div>
                                 <div class="col-md-4 mb-5">
-                                    <label class="form-label">{{__('admin.settings.system-settings.EORI No.')}}</label>
+                                    <label class="form-label">{{__('admin.settings.system-settings.EORI No')}}</label>
                                     <input type="text" name="eori_no" class="form-control" value="{{ old('eori_no', $settings->eori_no) }}">
                                 </div>
                                 <div class="col-md-4 mb-5">
@@ -110,8 +110,8 @@
                     <div class="card-body">
                         <p class="mb-3">{{__('admin.settings.system-settings.These settings are used to build:')}}</p>
                         <ul class="mb-0">
-                            <li>{{__('admin.settings.system-settings.Smart Header (company name, logo, approval number)')}}</li>
-                            <li>{{__('admin.settings.system-settings.Legal Footer (tax and customs numbers)')}}</li>
+                            <li>{{__('admin.settings.system-settings.Smart Header')}}</li>
+                            <li>{{__('admin.settings.system-settings.Legal Footer')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         <h3 class="card-title">{{__('admin.settings.system-settings.Official cover')}}</h3>
                     </div>
                     <div class="card-body">
-                        <p class="mb-4">{{__('admin.settings.system-settings.Generate the HACCP folder cover with the logo centered and approval number below.')}}</p>
+                        <p class="mb-4">{{__('admin.settings.system-settings.Generate folder cover with the logo centered and approval number below')}}</p>
                         <div class="d-grid gap-2">
                             <a href="{{ route('system-settings.cover') }}" class="btn btn-light-primary" target="_blank">{{__('admin.settings.system-settings.Open preview')}}</a>
                             <a href="{{ route('system-settings.cover', ['format' => 'pdf']) }}" class="btn btn-primary" target="_blank">{{__('admin.settings.system-settings.Download PDF')}}</a>
