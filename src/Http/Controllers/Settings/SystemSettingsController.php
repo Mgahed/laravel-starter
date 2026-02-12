@@ -94,7 +94,7 @@ class SystemSettingsController extends Controller
 
             return response($dompdf->output(), 200, [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="haccp-cover.pdf"',
+                'Content-Disposition' => 'inline; filename="cover.pdf"',
             ]);
         }
 
