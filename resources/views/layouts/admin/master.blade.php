@@ -9,6 +9,9 @@
       data-kt-app-aside-enabled="true" data-kt-app-aside-fixed="true" data-kt-app-aside-push-toolbar="true"
       data-kt-app-aside-push-footer="true" class="app-default">
 @include("mgahed-laravel-starter::layouts.general.scripts.theme")
+@php
+$settings = \Mgahed\LaravelStarter\Models\Admin\Settings\SystemSetting::query()->first();
+@endphp
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root" id="kt_app_root">
     <!--begin::Page-->
@@ -29,8 +32,12 @@
                     <!--end::Sidebar mobile toggle-->
                     <!--begin::Logo-->
                     <a href="{{route('dashboard')}}" class="app-sidebar-logo">
-                        <img alt="Logo" src="{{asset('assets/media/logos/default.svg')}}" class="h-30px theme-light-show"/>
-                        <img alt="Logo" src="{{asset('assets/media/logos/default-dark.svg')}}" class="h-30px theme-dark-show"/>
+						@if(isset($settings) && $settings->logo_path)
+							<img alt="Logo" src="{{asset('storage/' . $settings->logo_path)}}" class="h-30px"/>
+						@else
+							<img alt="Logo" src="{{asset('assets/media/logos/default.svg')}}" class="h-30px theme-light-show"/>
+							<img alt="Logo" src="{{asset('assets/media/logos/default-dark.svg')}}" class="h-30px theme-dark-show"/>
+						@endif
                     </a>
                     <!--end::Logo-->
                     <!--begin::Sidebar toggle-->

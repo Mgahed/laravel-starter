@@ -48,7 +48,9 @@
         <div class="cursor-pointer symbol symbol-30px symbol-lg-40px"
              data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
              data-kt-menu-placement="bottom-end">
-            <img src="{{asset('assets/media/avatars/gaza.jpg')}}" alt="user"/>
+			<div class="symbol-label fs-2 fw-semibold text-success">
+				{{strtoupper(substr(auth()->user()->name, 0, 1))}}{{strtoupper(substr(explode(' ', auth()->user()->name)[1] ?? '', 0, 1))}}
+			</div>
         </div>
         <!--begin::User account menu-->
         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -58,7 +60,9 @@
                 <div class="menu-content d-flex align-items-center px-3">
                     <!--begin::Avatar-->
                     <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{asset('assets/media/avatars/gaza.jpg')}}"/>
+						<div class="symbol-label fs-2 fw-semibold text-success">
+							{{strtoupper(substr(auth()->user()->name, 0, 1))}}{{strtoupper(substr(explode(' ', auth()->user()->name)[1] ?? '', 0, 1))}}
+						</div>
                     </div>
                     <!--end::Avatar-->
                     <!--begin::Username-->

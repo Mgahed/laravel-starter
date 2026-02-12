@@ -85,7 +85,7 @@
                                 <div class="col-md-4 mb-5">
                                     <label class="form-label">{{__('admin.settings.system-settings.Company Logo')}}</label>
                                     <input type="file" name="logo" class="form-control">
-                                    <div class="form-text">{{__('admin.settings.system-settings.Used on headers, footers, and the official cover.')}}</div>
+                                    <div class="form-text">{{__('admin.settings.system-settings.Used on headers footers and the official cover')}}</div>
                                 </div>
                                 @if($logoUrl)
                                     <div class="col-12 mb-5">
