@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mgahed\LaravelStarter\Http\Controllers\Settings\SystemSettingsController;
 use Mgahed\LaravelStarter\Http\Controllers\Settings\Translation\TranslationController;
 
 /**
@@ -20,6 +21,10 @@ Route::group(
 		'middleware' => $mcamaraMiddleWares
 	], function () {
 	Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
+
+		Route::get('system-settings', [SystemSettingsController::class, 'index'])->name('system-settings.index');
+		Route::post('system-settings', [SystemSettingsController::class, 'store'])->name('system-settings.store');
+		Route::get('system-settings-cover', [SystemSettingsController::class, 'cover'])->name('system-settings.cover');
 
 		Route::group(['prefix' => 'translation'], function () {
 			Route::get('translations', [TranslationController::class, 'index'])->name('translations.index');
