@@ -46,10 +46,10 @@ class StoreContentPageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'slug.regex' => 'The slug must be a valid URL slug (lowercase letters, numbers, and hyphens only).',
-            'slug.unique' => 'This slug is already taken. Please choose a different one.',
-            'title.*.required' => 'The title is required for the default language.',
-            'content.*.required' => 'The content is required for the default language.',
+            'slug.regex' => __('admin.content-pages.The slug must be a valid url slug lowercase letters numbers and hyphens only'),
+            'slug.unique' => __('admin.content-pages.This slug is already taken please choose a different one'),
+            'title.*.required' => __('admin.content-pages.The title is required for the default language'),
+            'content.*.required' => __('admin.content-pages.The content is required for the default language'),
         ];
     }
 

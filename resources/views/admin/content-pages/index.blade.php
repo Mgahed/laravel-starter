@@ -6,22 +6,22 @@
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Content Pages
+                        {{__('admin.content-pages.Content pages')}}
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">{{__('admin.content-pages.Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Content Pages</li>
+                        <li class="breadcrumb-item text-muted">{{__('admin.content-pages.Content pages')}}</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <a href="{{ route('content-pages.create') }}" class="btn btn-sm btn-primary">
                         <i class="ki-duotone ki-plus fs-2"></i>
-                        New Page
+                        {{__('admin.content-pages.New page')}}
                     </a>
                 </div>
             </div>
@@ -37,16 +37,16 @@
                                     <span class="path1"></span>
                                     <span class="path2"></span>
                                 </i>
-                                <input type="text" name="search" value="{{ $search }}" class="form-control form-control-solid w-250px ps-13" placeholder="Search pages...">
+                                <input type="text" name="search" value="{{ $search }}" class="form-control form-control-solid w-250px ps-13" placeholder="{{__('admin.content-pages.Search pages')}}">
                             </div>
                             <select name="published" class="form-select form-select-solid w-150px">
-                                <option value="">All Status</option>
-                                <option value="1" {{ $published === '1' ? 'selected' : '' }}>Published</option>
-                                <option value="0" {{ $published === '0' ? 'selected' : '' }}>Draft</option>
+                                <option value="">{{__('admin.content-pages.All status')}}</option>
+                                <option value="1" {{ $published === '1' ? 'selected' : '' }}>{{__('admin.content-pages.Published')}}</option>
+                                <option value="0" {{ $published === '0' ? 'selected' : '' }}>{{__('admin.content-pages.Draft')}}</option>
                             </select>
-                            <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                            <button type="submit" class="btn btn-sm btn-primary">{{__('admin.content-pages.Filter')}}</button>
                             @if($search || $published !== null)
-                                <a href="{{ route('content-pages.index') }}" class="btn btn-sm btn-secondary">Clear</a>
+                                <a href="{{ route('content-pages.index') }}" class="btn btn-sm btn-secondary">{{__('admin.content-pages.Clear')}}</a>
                             @endif
                         </form>
                     </div>
@@ -119,14 +119,20 @@
                                                 {{ $page->updated_at->diffForHumans() }}
                                             </td>
                                             <td class="text-end">
-                                                <a href="{{ route('content-pages.edit', $page->id) }}" class="btn btn-icon btn-light btn-active-light-primary btn-sm me-1">
+                                                <a href="{{ route('content-pages.download-pdf', $page->id) }}" class="btn btn-icon btn-light btn-active-light-success btn-sm me-1" title="{{__('admin.content-pages.Download pdf')}}">
+                                                    <i class="ki-duotone ki-file-down fs-3">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </a>
+                                                <a href="{{ route('content-pages.edit', $page->id) }}" class="btn btn-icon btn-light btn-active-light-primary btn-sm me-1" title="{{__('admin.content-pages.Edit')}}">
                                                     <i class="ki-duotone ki-pencil fs-3">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
                                                     </i>
                                                 </a>
                                                 @if(!$page->protected)
-                                                    <form action="{{ route('content-pages.destroy', $page->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this page?');">
+                                                    <form action="{{ route('content-pages.destroy', $page->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('{{__('admin.content-pages.Are you sure you want to delete this page')}}');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-icon btn-light btn-active-light-danger btn-sm">
@@ -149,7 +155,7 @@
 
                         <div class="d-flex justify-content-between align-items-center mt-5">
                             <div class="text-muted">
-                                Showing {{ $pages->firstItem() }} to {{ $pages->lastItem() }} of {{ $pages->total() }} pages
+                                {{__('admin.content-pages.Showing')}} {{ $pages->firstItem() }} {{__('admin.content-pages.to')}} {{ $pages->lastItem() }} {{__('admin.content-pages.of')}} {{ $pages->total() }} {{__('admin.content-pages.pages')}}
                             </div>
                             <div>
                                 {{ $pages->links() }}
@@ -163,11 +169,11 @@
                                     <span class="path2"></span>
                                 </i>
                             </div>
-                            <h3 class="text-gray-800 fw-bold mb-2">No Content Pages Found</h3>
-                            <p class="text-gray-500">Start by creating your first content page.</p>
+                            <h3 class="text-gray-800 fw-bold mb-2">{{__('admin.content-pages.No content pages found')}}</h3>
+                            <p class="text-gray-500">{{__('admin.content-pages.Start by creating your first content page')}}</p>
                             <a href="{{ route('content-pages.create') }}" class="btn btn-primary mt-3">
                                 <i class="ki-duotone ki-plus fs-2"></i>
-                                Create First Page
+                                {{__('admin.content-pages.Create first page')}}
                             </a>
                         </div>
                     @endif

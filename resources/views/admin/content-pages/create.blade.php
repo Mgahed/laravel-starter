@@ -6,28 +6,28 @@
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Create Content Page
+                        {{__('admin.content-pages.Create content page')}}
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">{{__('admin.content-pages.Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('content-pages.index') }}" class="text-muted text-hover-primary">Content Pages</a>
+                            <a href="{{ route('content-pages.index') }}" class="text-muted text-hover-primary">{{__('admin.content-pages.Content pages')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Create</li>
+                        <li class="breadcrumb-item text-muted">{{__('admin.content-pages.Create')}}</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <a href="{{ route('content-pages.index') }}" class="btn btn-sm btn-light">
                         <i class="ki-duotone ki-arrow-left fs-2"></i>
-                        Back to List
+                        {{__('admin.content-pages.Back to list')}}
                     </a>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <div class="col-lg-8">
                         <div class="card shadow-sm mb-5">
                             <div class="card-header">
-                                <h3 class="card-title">Page Content</h3>
+                                <h3 class="card-title">{{__('admin.content-pages.Page content')}}</h3>
                             </div>
                             <div class="card-body">
                                 <!-- Language Tabs -->
@@ -50,7 +50,7 @@
                                             <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" href="#locale_{{ $code }}" role="tab">
                                                 {{ $name }}
                                                 @if($code === $defaultLocale)
-                                                    <span class="badge badge-sm badge-light-primary ms-2">Default</span>
+                                                    <span class="badge badge-sm badge-light-primary ms-2">{{__('admin.content-pages.Default')}}</span>
                                                 @endif
                                             </a>
                                         </li>
@@ -62,7 +62,7 @@
                                     @foreach($locales as $code => $name)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="locale_{{ $code }}" role="tabpanel">
                                             <div class="mb-5">
-                                                <label class="form-label required">Title ({{ $name }})</label>
+                                                <label class="form-label required">{{__('admin.content-pages.Title')}} ({{ $name }})</label>
                                                 <input type="text" name="title[{{ $code }}]" class="form-control @error('title.'.$code) is-invalid @enderror"
                                                        value="{{ old('title.'.$code) }}"
                                                        {{ $code === $defaultLocale ? 'required' : '' }}>
@@ -72,14 +72,14 @@
                                             </div>
 
                                             <div class="mb-5">
-                                                <label class="form-label required">Content ({{ $name }})</label>
+                                                <label class="form-label required">{{__('admin.content-pages.Content')}} ({{ $name }})</label>
                                                 <textarea name="content[{{ $code }}]" id="content[{{ $code }}]" class="form-control @error('content.'.$code) is-invalid @enderror"
                                                           rows="15"
                                                           {{ $code === $defaultLocale ? 'required' : '' }}>{{ old('content.'.$code) }}</textarea>
                                                 @error('content.'.$code)
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
-                                                <div class="form-text">You can use HTML and markdown in the content.</div>
+                                                <div class="form-text">{{__('admin.content-pages.You can use html and markdown in the content')}}</div>
                                             </div>
                                         </div>
                                     @endforeach
@@ -91,31 +91,31 @@
                     <div class="col-lg-4">
                         <div class="card shadow-sm mb-5">
                             <div class="card-header">
-                                <h3 class="card-title">Page Settings</h3>
+                                <h3 class="card-title">{{__('admin.content-pages.Page settings')}}</h3>
                             </div>
                             <div class="card-body">
                                 <div class="mb-5">
-                                    <label class="form-label">Slug</label>
+                                    <label class="form-label">{{__('admin.content-pages.Slug')}}</label>
                                     <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"
                                            value="{{ old('slug') }}" placeholder="auto-generated-from-title">
                                     @error('slug')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <div class="form-text">Leave empty to auto-generate from title.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Leave empty to auto generate from title')}}</div>
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label">Version</label>
+                                    <label class="form-label">{{__('admin.content-pages.Version')}}</label>
                                     <input type="text" name="version" class="form-control @error('version') is-invalid @enderror"
                                            value="{{ old('version', '1.0') }}" placeholder="1.0">
                                     @error('version')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <div class="form-text">Optional version tracking.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Optional version tracking')}}</div>
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label">Display Order</label>
+                                    <label class="form-label">{{__('admin.content-pages.Display order')}}</label>
                                     <input type="number" name="record_order" class="form-control @error('record_order') is-invalid @enderror"
                                            value="{{ old('record_order', 100) }}" min="0">
                                     @error('record_order')
@@ -128,10 +128,10 @@
                                         <input class="form-check-input" type="checkbox" name="is_published" value="1" id="is_published"
                                                {{ old('is_published') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="is_published">
-                                            Publish this page
+                                            {{__('admin.content-pages.Publish this page')}}
                                         </label>
                                     </div>
-                                    <div class="form-text">Only published pages are visible on the website.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Only published pages are visible on the website')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -141,10 +141,10 @@
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="ki-duotone ki-check fs-2"></i>
-                                        Create Page
+                                        {{__('admin.content-pages.Create page')}}
                                     </button>
                                     <a href="{{ route('content-pages.index') }}" class="btn btn-light">
-                                        Cancel
+                                        {{__('admin.content-pages.Cancel')}}
                                     </a>
                                 </div>
                             </div>

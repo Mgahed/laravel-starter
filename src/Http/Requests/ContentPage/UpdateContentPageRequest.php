@@ -47,9 +47,9 @@ class UpdateContentPageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.*.required' => 'The title is required for the default language.',
-            'content.*.required' => 'The content is required for the default language.',
-            'change_notes.max' => 'Change notes cannot exceed 1000 characters.',
+            'title.*.required' => __('admin.content-pages.The title is required for the default language'),
+            'content.*.required' => __('admin.content-pages.The content is required for the default language'),
+            'change_notes.max' => __('admin.content-pages.Change notes cannot exceed 1000 characters'),
         ];
     }
 

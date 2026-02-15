@@ -32,6 +32,7 @@ Route::group(
 		Route::post('content-pages/bulk-delete', [ContentPageController::class, 'bulkDelete'])->name('content-pages.bulk-delete');
 		Route::get('content-pages/{id}/revisions', [ContentPageController::class, 'revisions'])->name('content-pages.revisions');
 		Route::post('content-pages/{id}/revisions/{revisionId}/restore', [ContentPageController::class, 'restoreRevision'])->name('content-pages.restore-revision');
+		Route::get('content-pages/{id}/download-pdf', [ContentPageController::class, 'downloadPdf'])->name('content-pages.download-pdf');
 
 		Route::group(['prefix' => 'translation'], function () {
 			Route::get('translations', [TranslationController::class, 'index'])->name('translations.index');

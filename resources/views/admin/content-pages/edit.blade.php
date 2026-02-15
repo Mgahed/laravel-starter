@@ -6,32 +6,39 @@
             <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Edit Content Page
+                        {{__('admin.content-pages.Edit content page')}}
                     </h1>
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">{{__('admin.content-pages.Dashboard')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('content-pages.index') }}" class="text-muted text-hover-primary">Content Pages</a>
+                            <a href="{{ route('content-pages.index') }}" class="text-muted text-hover-primary">{{__('admin.content-pages.Content pages')}}</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Edit</li>
+                        <li class="breadcrumb-item text-muted">{{__('admin.content-pages.Edit')}}</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
+                    <a href="{{ route('content-pages.download-pdf', $page->id) }}" class="btn btn-sm btn-success" target="_blank">
+                        <i class="ki-duotone ki-file-down fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        {{__('admin.content-pages.Download pdf')}}
+                    </a>
                     <a href="{{ route('content-pages.revisions', $page->id) }}" class="btn btn-sm btn-light-info">
                         <i class="ki-duotone ki-time fs-2"></i>
-                        View Revisions
+                        {{__('admin.content-pages.View revisions')}}
                     </a>
                     <a href="{{ route('content-pages.index') }}" class="btn btn-sm btn-light">
                         <i class="ki-duotone ki-arrow-left fs-2"></i>
-                        Back to List
+                        {{__('admin.content-pages.Back to list')}}
                     </a>
                 </div>
             </div>
@@ -52,12 +59,12 @@
                     <div class="col-lg-8">
                         <div class="card shadow-sm mb-5">
                             <div class="card-header">
-                                <h3 class="card-title">Page Content</h3>
+                                <h3 class="card-title">{{__('admin.content-pages.Page content')}}</h3>
                                 <div class="card-toolbar">
                                     @if($page->is_published)
-                                        <span class="badge badge-success">Published</span>
+                                        <span class="badge badge-success">{{__('admin.content-pages.Published')}}</span>
                                     @else
-                                        <span class="badge badge-warning">Draft</span>
+                                        <span class="badge badge-warning">{{__('admin.content-pages.Draft')}}</span>
                                     @endif
                                 </div>
                             </div>
@@ -69,7 +76,7 @@
                                             <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" href="#locale_{{ $code }}" role="tab">
                                                 {{ $name }}
                                                 @if($code === $defaultLocale)
-                                                    <span class="badge badge-sm badge-light-primary ms-2">Default</span>
+                                                    <span class="badge badge-sm badge-light-primary ms-2">{{__('admin.content-pages.Default')}}</span>
                                                 @endif
                                                 @if($page->hasTranslation($code))
                                                     <i class="ki-duotone ki-check-circle fs-5 text-success ms-1">
@@ -87,7 +94,7 @@
                                     @foreach($locales as $code => $name)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="locale_{{ $code }}" role="tabpanel">
                                             <div class="mb-5">
-                                                <label class="form-label required">Title ({{ $name }})</label>
+                                                <label class="form-label required">{{__('admin.content-pages.Title')}} ({{ $name }})</label>
                                                 <input type="text" name="title[{{ $code }}]" class="form-control @error('title.'.$code) is-invalid @enderror"
                                                        value="{{ old('title.'.$code, $page->getTranslation('title', $code, false)) }}"
                                                        {{ $code === $defaultLocale ? 'required' : '' }}>
@@ -97,14 +104,14 @@
                                             </div>
 
                                             <div class="mb-5">
-                                                <label class="form-label required">Content ({{ $name }})</label>
+                                                <label class="form-label required">{{__('admin.content-pages.Content')}} ({{ $name }})</label>
                                                 <textarea name="content[{{ $code }}]" id="content[{{ $code }}]" class="form-control @error('content.'.$code) is-invalid @enderror"
                                                           rows="15"
                                                           {{ $code === $defaultLocale ? 'required' : '' }}>{{ old('content.'.$code, $page->getTranslation('content', $code, false)) }}</textarea>
                                                 @error('content.'.$code)
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
-                                                <div class="form-text">You can use HTML and markdown in the content.</div>
+                                                <div class="form-text">{{__('admin.content-pages.You can use html and markdown in the content')}}</div>
                                             </div>
                                         </div>
                                     @endforeach
@@ -116,37 +123,37 @@
                     <div class="col-lg-4">
                         <div class="card shadow-sm mb-5">
                             <div class="card-header">
-                                <h3 class="card-title">Page Settings</h3>
+                                <h3 class="card-title">{{__('admin.content-pages.Page settings')}}</h3>
                             </div>
                             <div class="card-body">
                                 <div class="mb-5">
-                                    <label class="form-label">Slug</label>
+                                    <label class="form-label">{{__('admin.content-pages.Slug')}}</label>
                                     <input type="text" class="form-control bg-light" value="{{ $page->slug }}" readonly disabled>
-                                    <div class="form-text">The slug cannot be changed after page creation.</div>
+                                    <div class="form-text">{{__('admin.content-pages.The slug cannot be changed after page creation')}}</div>
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label">Version</label>
+                                    <label class="form-label">{{__('admin.content-pages.Version')}}</label>
                                     <input type="text" name="version" class="form-control @error('version') is-invalid @enderror"
                                            value="{{ old('version', $page->version) }}" placeholder="1.0">
                                     @error('version')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <div class="form-text">Change version to create a new revision.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Change version to create a new revision')}}</div>
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label">Change Notes</label>
+                                    <label class="form-label">{{__('admin.content-pages.Change notes')}}</label>
                                     <textarea name="change_notes" class="form-control @error('change_notes') is-invalid @enderror"
-                                              rows="3" placeholder="Describe what changed in this version...">{{ old('change_notes') }}</textarea>
+                                              rows="3" placeholder="{{__('admin.content-pages.Describe what changed in this version')}}">{{ old('change_notes') }}</textarea>
                                     @error('change_notes')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <div class="form-text">Notes will be saved if version changes.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Notes will be saved if version changes')}}</div>
                                 </div>
 
                                 <div class="mb-5">
-                                    <label class="form-label">Display Order</label>
+                                    <label class="form-label">{{__('admin.content-pages.Display order')}}</label>
                                     <input type="number" name="record_order" class="form-control @error('record_order') is-invalid @enderror"
                                            value="{{ old('record_order', $page->record_order) }}" min="0">
                                     @error('record_order')
@@ -159,10 +166,10 @@
                                         <input class="form-check-input" type="checkbox" name="is_published" value="1" id="is_published"
                                                {{ old('is_published', $page->is_published) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="is_published">
-                                            Publish this page
+                                            {{__('admin.content-pages.Publish this page')}}
                                         </label>
                                     </div>
-                                    <div class="form-text">Only published pages are visible on the website.</div>
+                                    <div class="form-text">{{__('admin.content-pages.Only published pages are visible on the website')}}</div>
                                 </div>
 
                                 @if($page->published_at)
@@ -173,7 +180,7 @@
                                             <span class="path3"></span>
                                         </i>
                                         <div class="d-flex flex-column">
-                                            <h5 class="mb-1">Published</h5>
+                                            <h5 class="mb-1">{{__('admin.content-pages.Published')}}</h5>
                                             <span>{{ $page->published_at->format('M d, Y H:i') }}</span>
                                         </div>
                                     </div>
@@ -183,19 +190,19 @@
 
                                 <div class="text-muted fs-7">
                                     <div class="mb-2">
-                                        <strong>Created:</strong> {{ $page->created_at->format('M d, Y H:i') }}
+                                        <strong>{{__('admin.content-pages.Created')}}:</strong> {{ $page->created_at->format('M d, Y H:i') }}
                                     </div>
                                     <div class="mb-2">
-                                        <strong>Updated:</strong> {{ $page->updated_at->format('M d, Y H:i') }}
+                                        <strong>{{__('admin.content-pages.Updated')}}:</strong> {{ $page->updated_at->format('M d, Y H:i') }}
                                     </div>
                                     <div class="mb-2">
-                                        <strong>Revisions:</strong>
+                                        <strong>{{__('admin.content-pages.Revisions')}}:</strong>
                                         <a href="{{ route('content-pages.revisions', $page->id) }}" class="text-primary">
-                                            {{ $page->revisions()->count() }} revision(s)
+                                            {{ $page->revisions()->count() }} {{__('admin.content-pages.Revisions')}}
                                         </a>
                                     </div>
                                     <div class="mb-2">
-                                        <strong>Available Languages:</strong>
+                                        <strong>{{__('admin.content-pages.Available languages')}}:</strong>
                                         @foreach($availableLanguages as $lang)
                                             <span class="badge badge-light-primary">{{ strtoupper($lang) }}</span>
                                         @endforeach
@@ -209,15 +216,15 @@
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="ki-duotone ki-check fs-2"></i>
-                                        Update Page
+                                        {{__('admin.content-pages.Update page')}}
                                     </button>
                                     <a href="{{ route('content-pages.index') }}" class="btn btn-light">
-                                        Cancel
+                                        {{__('admin.content-pages.Cancel')}}
                                     </a>
                                     @if(!$page->protected)
-                                        <button type="button" class="btn btn-light-danger" onclick="if(confirm('Are you sure you want to delete this page?')) document.getElementById('delete-form').submit();">
+                                        <button type="button" class="btn btn-light-danger" onclick="if(confirm('{{__('admin.content-pages.Are you sure you want to delete this page')}}')) document.getElementById('delete-form').submit();">
                                             <i class="ki-duotone ki-trash fs-2"></i>
-                                            Delete Page
+                                            {{__('admin.content-pages.Delete page')}}
                                         </button>
                                     @endif
                                 </div>

@@ -4,10 +4,12 @@ namespace Mgahed\LaravelStarter\Http\Controllers\ContentPage;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Mgahed\LaravelStarter\Http\Requests\ContentPage\StoreContentPageRequest;
 use Mgahed\LaravelStarter\Http\Requests\ContentPage\UpdateContentPageRequest;
 use Mgahed\LaravelStarter\Models\Admin\ContentPage;
+use Mgahed\LaravelStarter\Models\Admin\Settings\SystemSetting;
 
 class ContentPageController extends Controller
 {
@@ -79,7 +81,7 @@ class ContentPageController extends Controller
 
         return redirect()
             ->route('content-pages.edit', $page->id)
-            ->with('success', 'Content page created successfully.');
+            ->with('success', __('admin.content-pages.Content page created successfully'));
     }
 
     /**
@@ -145,9 +147,9 @@ class ContentPageController extends Controller
 
         $page->update($data);
 
-        $message = 'Content page updated successfully.';
+        $message = __('admin.content-pages.Content page updated successfully');
         if ($versionChanged) {
-            $message .= ' New revision created.';
+            $message .= ' ' . __('admin.content-pages.New revision created');
         }
 
         return redirect()
@@ -165,14 +167,14 @@ class ContentPageController extends Controller
         if ($page->protected) {
             return redirect()
                 ->route('content-pages.index')
-                ->with('error', 'This page is protected and cannot be deleted.');
+                ->with('error', __('admin.content-pages.This page is protected and cannot be deleted'));
         }
 
         $page->delete();
 
         return redirect()
             ->route('content-pages.index')
-            ->with('success', 'Content page deleted successfully.');
+            ->with('success', __('admin.content-pages.Content page deleted successfully'));
     }
 
     /**
@@ -191,7 +193,7 @@ class ContentPageController extends Controller
 
         return redirect()
             ->route('content-pages.index')
-            ->with('success', 'Selected pages deleted successfully.');
+            ->with('success', __('admin.content-pages.Selected pages deleted successfully'));
     }
 
     /**
@@ -217,7 +219,7 @@ class ContentPageController extends Controller
         $revision = $page->revisions()->findOrFail($revisionId);
 
         // Create a new revision with current data before restoring
-        $page->createRevision($page->version, 'Before restoring to version ' . $revision->version);
+        $page->createRevision($page->version, __('admin.content-pages.Before restoring to version') . ' ' . $revision->version);
 
         // Restore from revision
         $page->update([
@@ -228,7 +230,109 @@ class ContentPageController extends Controller
 
         return redirect()
             ->route('content-pages.edit', $page->id)
-            ->with('success', 'Page restored to version ' . $revision->version);
+            ->with('success', __('admin.content-pages.Page restored to version') . ' ' . $revision->version);
+    }
+
+    /**
+     * Download content page as PDF with cover page
+     */
+    public function downloadPdf($id)
+    {
+        $page = ContentPage::findOrFail($id);
+
+        // Check if dompdf is available
+        if (!class_exists('Dompdf\\Dompdf')) {
+            return redirect()
+                ->back()
+                ->with('error', __('admin.content-pages.Pdf library is not installed'));
+        }
+
+        // Get system settings for cover page
+        $settings = SystemSetting::first();
+        if (!$settings) {
+            $settings = SystemSetting::create($this->defaultSystemSettings());
+        }
+
+        $logoUrl = $this->logoUrl($settings->logo_path);
+        $logoFilePath = $this->logoFilePath($settings->logo_path);
+
+        // Get current locale content
+        $locale = app()->getLocale();
+        $title = $page->getTranslation('title', $locale, true);
+        $content = $page->getTranslation('content', $locale, true);
+
+        // Render the view
+        $view = view('mgahed-laravel-starter::admin.content-pages.pdf', [
+            'page' => $page,
+            'title' => $title,
+            'content' => $content,
+            'settings' => $settings,
+            'logoUrl' => $logoUrl,
+            'logoFilePath' => $logoFilePath,
+        ]);
+
+        // Generate PDF
+        $options = new \Dompdf\Options();
+        $options->set('isRemoteEnabled', true);
+        $options->set('chroot', [public_path(), storage_path('app/public')]);
+        $options->set('isHtml5ParserEnabled', true);
+
+        $dompdf = new \Dompdf\Dompdf($options);
+        $dompdf->loadHtml($view->render());
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Generate filename
+        $filename = Str::slug($title) . '-' . date('Y-m-d') . '.pdf';
+
+        return response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
+    }
+
+    /**
+     * Get logo URL
+     */
+    private function logoUrl(?string $path): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($path);
+    }
+
+    /**
+     * Get logo file path
+     */
+    private function logoFilePath(?string $path): ?string
+    {
+        if (!$path) {
+            return null;
+        }
+
+        return public_path('storage/' . $path);
+    }
+
+    /**
+     * Default system settings
+     */
+    private function defaultSystemSettings(): array
+    {
+        return [
+            'company_name' => 'Company Name',
+            'general_manager' => 'General Manager',
+            'health_approval_number' => 'N/A',
+            'full_address' => 'Address',
+            'landline' => '',
+            'mobile' => '',
+            'whatsapp_enabled' => false,
+            'website' => '',
+            'tax_id' => '',
+            'vat_no' => '',
+            'eori_no' => '',
+        ];
     }
 
     /**
