@@ -9,16 +9,17 @@
             margin: 0;
         }
         body {
-            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-family: DejaVu Sans, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            unicode-bidi: embed;
         }
 
         /* Cover Page Styles */
         .cover-page {
             width: 100%;
-            height: 100vh;
+            height: 297mm;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -42,6 +43,7 @@
             font-weight: bold;
             margin: 40px 0 16px;
             color: #333;
+            unicode-bidi: embed;
         }
         .approval-number {
             font-size: 18px;
@@ -68,7 +70,6 @@
         /* Content Page Styles */
         .content-page {
             padding: 60px 80px;
-            page-break-before: always;
         }
         .content-header {
             border-bottom: 3px solid #0066cc;
@@ -80,6 +81,7 @@
             font-weight: bold;
             margin: 0 0 10px;
             color: #1a1a1a;
+            unicode-bidi: embed;
         }
         .content-meta {
             font-size: 12px;
@@ -93,6 +95,7 @@
             color: #333;
             line-height: 1.8;
             text-align: justify;
+            unicode-bidi: embed;
         }
         .content-body p {
             margin: 16px 0;
@@ -139,7 +142,7 @@
             <div class="company-name">{{ $settings->company_name }}</div>
             <div class="approval-number">{{ $settings->health_approval_number }}</div>
 
-            <div class="document-title">{{ $title }}</div>
+            <div class="document-title">{!! $title !!}</div>
 
             @if($page->version)
                 <div style="margin-top: 20px;">
@@ -170,7 +173,7 @@
     <!-- Content Page -->
     <div class="content-page">
         <div class="content-header">
-            <h1 class="content-title">{{ $title }}</h1>
+            <h1 class="content-title">{!! $title !!}</h1>
             <div class="content-meta">
                 @if($page->version)
                     <span>{{__('admin.content-pages.Version')}}: {{ $page->version }}</span>
