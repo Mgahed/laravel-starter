@@ -74,8 +74,7 @@
                                             <div class="mb-5">
                                                 <label class="form-label required">{{__('admin.content-pages.Content')}} ({{ $name }})</label>
                                                 <textarea name="content[{{ $code }}]" id="content[{{ $code }}]" class="form-control @error('content.'.$code) is-invalid @enderror"
-                                                          rows="15"
-                                                          {{ $code === $defaultLocale ? 'required' : '' }}>{{ old('content.'.$code) }}</textarea>
+                                                          rows="15">{{ old('content.'.$code) }}</textarea>
                                                 @error('content.'.$code)
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
