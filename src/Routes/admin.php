@@ -28,7 +28,7 @@ Route::group(
 		Route::get('system-settings-cover', [SystemSettingsController::class, 'cover'])->name('system-settings.cover');
 
 		// Content Pages Management
-		Route::resource('content-pages', ContentPageController::class);
+		Route::resource('content-pages', ContentPageController::class)->names('content-pages');
 		Route::post('content-pages/bulk-delete', [ContentPageController::class, 'bulkDelete'])->name('content-pages.bulk-delete');
 		Route::get('content-pages/{id}/revisions', [ContentPageController::class, 'revisions'])->name('content-pages.revisions');
 		Route::post('content-pages/{id}/revisions/{revisionId}/restore', [ContentPageController::class, 'restoreRevision'])->name('content-pages.restore-revision');
