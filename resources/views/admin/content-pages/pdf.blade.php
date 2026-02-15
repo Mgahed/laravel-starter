@@ -8,8 +8,14 @@
         @page {
             margin: 0;
         }
+		@font-face {
+			font-family: 'cairo';
+			src: url('file://{{ public_path('assets/Cairo-Regular.ttf') }}') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
         body {
-            font-family: DejaVu Sans, sans-serif;
+            font-family: 'cairo', 'DejaVu Sans', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -127,6 +133,12 @@
         html[dir="rtl"] .content-body {
             text-align: justify;
         }
+
+        /* RTL Helper */
+        .rtl-text {
+            direction: rtl;
+            unicode-bidi: embed;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +154,7 @@
             <div class="company-name">{{ $settings->company_name }}</div>
             <div class="approval-number">{{ $settings->health_approval_number }}</div>
 
-            <div class="document-title">{!! $title !!}</div>
+            <div class="document-title {{ app()->getLocale() === 'ar' ? 'rtl-text' : '' }}">{!! $title !!}</div>
 
             @if($page->version)
                 <div style="margin-top: 20px;">
@@ -173,8 +185,9 @@
     <!-- Content Page -->
     <div class="content-page">
         <div class="content-header">
-            <h1 class="content-title">{!! $title !!}</h1>
+            <h1 class="content-title {{ app()->getLocale() === 'ar' ? 'rtl-text' : '' }}">{!! $title !!}</h1>
             <div class="content-meta">
+                <span>{{__('admin.content-pages.Generated on')}}: {{ now()->format('Y-m-d H:i') }}</span>
                 @if($page->version)
                     <span>{{__('admin.content-pages.Version')}}: {{ $page->version }}</span>
                 @endif
@@ -184,7 +197,7 @@
             </div>
         </div>
 
-        <div class="content-body">
+        <div class="content-body {{ app()->getLocale() === 'ar' ? 'rtl-text' : '' }}">
             {!! $content !!}
         </div>
 

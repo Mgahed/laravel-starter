@@ -276,6 +276,7 @@ class ContentPageController extends Controller
         $options->set('isRemoteEnabled', true);
         $options->set('chroot', [public_path(), storage_path('app/public')]);
         $options->set('isHtml5ParserEnabled', true);
+        $options->set('defaultFont', 'cairo');
 
         $dompdf = new \Dompdf\Dompdf($options);
         $dompdf->loadHtml($view->render());
